@@ -8,16 +8,19 @@ public class P07_StringExplosion {
 
         String input = scanner.nextLine();
         //abv>1>1>2>2asdasd
-        for (int i = 0; i < input.length(); i++) {
-            char currentSymbol = input.charAt(i);
+        StringBuilder textBuilder = new StringBuilder(input);
+        int totalStrength = 0;
+        for (int i = 0; i < textBuilder.length(); i++) {
+            char currentSymbol = textBuilder.charAt(i);
             if (currentSymbol == '>') {
-                int explosionIndex = i;
-                int powerOfExplosion = Character.getNumericValue(input.charAt(i + 1));
-
-                for (int j = 1; j <= powerOfExplosion; j++) {
-
-                }
+                int powerOfExplosion = Integer.parseInt(textBuilder.charAt(i + 1) + "");
+                totalStrength += powerOfExplosion;
+                } else if (currentSymbol != '>' && totalStrength > 0){
+                textBuilder.deleteCharAt(i);
+                totalStrength --;
+                i --;
             }
         }
+        System.out.println(textBuilder);
     }
 }
